@@ -6,5 +6,5 @@ By the end of this lecture you will be able to:
 * Manipulate **lists**
 * Introduction to **numpy** and **matplotlib** librarie
 
-You can run the code on <a target="_blank" href="https://colab.research.google.com/github/CosmoStatGW/gwfast/blob/master/notebooks/gwfast_tutorial.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+You can run the code on <a target="_blank" href="https://colab.research.google.com/github/mattcali/python_scuola/blob/main/Intro_to_Python_scuola.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 
