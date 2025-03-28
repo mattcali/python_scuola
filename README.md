@@ -4,4 +4,7 @@ By the end of this lecture you will be able to:
 * Identify and use different object **types** in python.
 * Use some of the python's default functions and define your own **functions**.
 * Manipulate **lists**
-* Introduction to **numpy** and **matplotlib** libraries
+* Introduction to **numpy** and **matplotlib** librarie
+
+You can run the code on <a target="_blank" href="https://colab.research.google.com/github/CosmoStatGW/gwfast/blob/master/notebooks/gwfast_tutorial.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+
