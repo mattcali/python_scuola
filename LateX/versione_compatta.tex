@@ -1,0 +1,178 @@
+% =====================================================================
+% LABORATORIO LATEX: GUIDA PRATICA PER LA LEZIONE (2-3 ORE)
+% Compilatore: pdfLaTeX | File immagine richiesto: immagine_esempio.png
+% =====================================================================
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\title{Laboratorio LaTeX: elementi di un documento}
+\author{Il tuo nome}
+\date{\today}
+
+% =====================================================================
+% PRONTO SOCCORSO ERRORI COMUNI (Da mostrare agli studenti)
+% 1. ?? nei riferimenti? -> Ricompila una seconda volta (serve a LaTeX per aggiornare i file di servizio).
+% 2. Errore di sintassi improvviso? -> Controlla di non aver dimenticato una graffa chiusa '}' o un punto e virgola ';' nei grafici.
+% 3. Simbolo '$' dentro l'ambiente equation o align -> Danno errore, vanno rimossi.
+% 4. Nome immagine errato o maiuscole errate -> L'immagine non viene trovata.
+% =====================================================================
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+% =====================================================================
+% SEZIONE 1: TESTO
+% =====================================================================
+\section{Testo}\label{sec:testo}
+Questo è un testo normale. Una riga vuota nel codice crea un nuovo paragrafo.
+
+Una parola in \textbf{grassetto} e una in \textit{corsivo}.
+
+\begin{center}
+Una frase centrata all'interno di un ambiente apposito.
+\end{center}
+
+Caratteri speciali protetti da backslash: 50\%, \&, \#, \$. 
+La barra inversa si scrive: \textbackslash{}.
+
+\subsection{Sottotitolo di prova}
+Testo sottostante al sottotitolo.
+
+% ESERCIZIO T1 [BASE]: Prova a scrivere due paragrafi separati da una riga vuota.
+% ESERCIZIO T2 [BASE]: Inserisci una parola in grassetto e una in corsivo.
+
+
+% =====================================================================
+% SEZIONE 2: EQUAZIONI
+% =====================================================================
+\section{Equazioni}
+In linea con il testo: $x^{2} + a_{1} = 5$.
+
+Su una riga separata (senza numero):
+\[
+  \frac{1}{2} + \sqrt{9} = 3.5
+\]
+
+Equazione numerata automaticamente con etichetta:
+\begin{equation}
+  E = m c^{2}
+  \label{eq:energia}
+\end{equation}
+
+Richiamo automatico dell'equazione tramite il suo rimando: l'equazione~\eqref{eq:energia} esprime l'energia.
+
+% ESERCIZIO M1-M3 [BASE]: Prova a creare una nuova formula numerata con etichetta e richiamala nel testo.
+
+
+% =====================================================================
+% SEZIONE 3: ELENCHI
+% =====================================================================
+\section{Elenchi}
+Elenco puntato (\texttt{itemize}):
+\begin{itemize}
+  \item Primo elemento puntato.
+  \item Secondo elemento puntato.
+\end{itemize}
+
+Elenco numerato (\texttt{enumerate}):
+\begin{enumerate}
+  \item Primo passo logico.
+  \item Secondo passo logico.
+\end{enumerate}
+
+% ESERCIZIO L1 [BASE]: Aggiungi una terza voce a entrambi gli elenchi e osserva la numerazione automatica.
+
+
+% =====================================================================
+% SEZIONE 4: TABELLE
+% =====================================================================
+\section{Tabelle}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lc}
+    \hline
+    Voce & Quantità \\
+    \hline
+    Libri & 3 \\
+    Quaderni & 5 \\
+    \hline
+  \end{tabular}
+  \caption{Una tabella di esempio.}
+  \label{tab:esempio}
+\end{table}
+
+% ESERCIZIO A1-A3 [BASE]: Modifica i dati della tabella e verifica che il riferimento alla tabella~\ref{tab:esempio} funzioni correttamente.
+
+
+% =====================================================================
+% SEZIONE 5: IMMAGINI
+% =====================================================================
+\section{Immagini}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{immagine_esempio.png}
+  \caption{Una descrizione chiara dell'immagine.}
+  \label{fig:immagine}
+\end{figure}
+
+% ESERCIZIO I1 [BASE]: Cambia la larghezza dell'immagine da 0.4 a 0.6 e ricompila. Riferimento: la figura~\ref{fig:immagine}.
+
+
+% =====================================================================
+% SEZIONE 6: GRAFICI
+% =====================================================================
+\section{Grafici}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.6\textwidth,
+  xlabel={$x$}, ylabel={$y$},
+  domain=-2:2, samples=50]
+  \addplot {2*x}; % Funzione da tracciare (ricorda il punto e virgola finale!)
+\end{axis}
+\end{tikzpicture}
+\caption{Il grafico della funzione $y=2x$.}
+\label{fig:grafico}
+\end{figure}
+
+% ESERCIZIO G1 [BASE]: Modifica la funzione in $x^2$ e aggiorna la didascalia di conseguenza.
+
+
+% =====================================================================
+% SEZIONE 7: RIFERIMENTI E HYPERLINK
+% =====================================================================
+\section{Riferimenti e Hyperlink}
+Come visto nella sezione~\ref{sec:testo}, LaTeX gestisce i rimandi in automatico. 
+Allo stesso modo, possiamo inserire collegamenti esterni cliccabili:
+\begin{itemize}
+  \item \href{https://www.overleaf.com}{Apri il sito di Overleaf}
+  \item \url{https://www.latex-project.org}
+\end{itemize}
+
+
+% =====================================================================
+% SEZIONE 8: PROVA FINALE (F1) - TEMPLATE PRONTO PER GLI STUDENTI
+% =====================================================================
+\clearpage
+\section{Raccolta Personale (Esercitazione F1)}
+% Istruzioni per gli studenti: 
+% Sostituire questo testo con la propria raccolta integrando:
+% - Un'equazione numerata
+% - Un elenco numerato
+% - Una tabella con didascalia
+% - Un'immagine e un grafico
+% - I rispettivi rimandi (\ref / \eqref) funzionanti e senza segnaposti '??'.
+
+\end{document}

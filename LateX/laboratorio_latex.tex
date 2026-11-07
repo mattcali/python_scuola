@@ -1,0 +1,676 @@
+% LABORATORIO LATEX: ELEMENTI DI UN DOCUMENTO
+% Percorso pratico di 2-3 ore. Compilatore: pdfLaTeX.
+% File principale: laboratorio_latex.tex. Immagine richiesta: immagine_esempio.png.
+%
+% COME USARE QUESTO FILE
+% 1. Compila il progetto così com'è: tutti gli esempi sono già funzionanti.
+% 2. Cerca il marcatore della slide (S05, S06...) o l'identificativo di un esercizio.
+% 3. Leggi prima la spiegazione, poi modifica il blocco di codice immediatamente vicino.
+% 4. Ricompila dopo UNA modifica e confronta sorgente e PDF.
+% 5. Se compare un errore, annulla l'ultima modifica e leggi il primo messaggio di errore.
+% Non serve eseguire tutti gli esercizi per avere un documento compilabile.
+%
+% LEGENDA DEGLI ESERCIZI
+% [BASE]: percorso per le 2 ore, da svolgere in aula con il docente.
+% [ESTENSIONE]: approfondimento pratico per arrivare a 3 ore o lavoro successivo.
+% Gli identificativi sono stabili: P = preambolo, T = testo, M = matematica,
+% L = elenchi, A = tabelle, I = immagini, G = grafici, R = riferimenti, H = hyperlink.
+% Prima prova i BASE; poi scegli le ESTENSIONI. Non sono nuovi argomenti da memorizzare.
+% La prova conclusiva F1 integra gli strumenti appresi senza imporre un tema applicativo.
+%
+% COME LEGGERE I COMMENTI
+% Il simbolo % esclude dal PDF tutto ciò che segue sulla stessa riga.
+% Un commento può stare su una riga propria o dopo un comando effettivo.
+% Per attivare un esempio commentato togli SOLO il primo % di ogni riga del blocco.
+% Non togliere i % alle spiegazioni: diventerebbero testo o comandi indesiderati.
+% I commenti non compaiono nel PDF: questo sorgente è la guida pratica principale.
+%
+
+% S05 - PREAMBOLO E STRUTTURA
+% Tutto ciò che precede begin{document} è il PREAMBOLO: impostazioni e pacchetti.
+% Un pacchetto aggiunge funzioni: si carica con usepackage e non serve ricaricarlo nel testo.
+% Le parentesi graffe contengono argomenti richiesti; le quadre opzioni facoltative.
+% Esempio: documentclass[a4paper,11pt]{article} sceglie article con due opzioni.
+% Nei comandi conta la distinzione tra maiuscole e minuscole. Non inserire spazi nei nomi.
+
+% CLASSE E DIMENSIONE DI BASE
+% article è adatta a un testo breve con sezioni. report aggiunge anche i capitoli.
+% Le classi standard accettano 10pt, 11pt o 12pt. L'opzione definisce la dimensione BASE:
+% titoli, note e altre parti del documento usano dimensioni proporzionate.
+% Non modificare 11pt nel testo: cambia questa opzione e ricompila.
+\documentclass[a4paper,11pt]{article} % Classe per documenti brevi; A4, dimensione base 11pt.
+\usepackage[T1]{fontenc} % Gestisce i caratteri del font, utili per il testo italiano.
+\usepackage[italian]{babel} % Sillabazione e nomi automatici in italiano.
+
+% PAGINA E MARGINI
+% margin=2.5cm imposta lo stesso margine su tutti i lati della pagina A4.
+% Per margini diversi puoi SOSTITUIRE l'opzione con:
+% left=3cm,right=2cm,top=2cm,bottom=2cm
+% Le opzioni si separano con virgole. Scrivi sempre l'unità: 3cm, non soltanto 3.
+% Per landscape cambia la riga del pacchetto, senza caricarlo una seconda volta.
+\usepackage[margin=2.5cm]{geometry} % Margini dell'intero documento; modifica il valore.
+% Per il foglio orizzontale SOSTITUISCI la riga precedente con questa:
+% \usepackage[margin=2.5cm,landscape]{geometry}
+% Opzionale, interlinea più ampia per tutto il documento:
+% \linespread{1.15}
+
+% PACCHETTI CHE USEREMO NEL LABORATORIO
+% amsmath: equazioni e eqref. graphicx: file immagine. pgfplots: grafici.
+% hyperref: collegamenti esterni e rimandi interni cliccabili.
+% Non è necessario imparare subito tutti i nomi: torna a queste righe quando serve.
+% Se un comando risulta sconosciuto, controlla nome e pacchetto prima di aggiungerne altri.
+\usepackage{amsmath} % Comandi matematici e riferimenti alle equazioni con \eqref.
+\usepackage{graphicx} % Inserimento di immagini già disponibili come file.
+\usepackage{pgfplots} % Crea grafici da formule o coordinate direttamente nel sorgente.
+\pgfplotsset{compat=1.18} % Imposta una versione stabile del comportamento dei grafici.
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref} % Link cliccabili nel PDF.
+% hyperref si carica qui per ultimo; linkcolor per rimandi interni, urlcolor per siti web.
+% TITOLO, AUTORE E DATA
+% Questi comandi definiscono i dati; maketitle, nel contenuto, li stampa nel PDF.
+% Le graffe vuote significano contenuto vuoto: author{} nasconde l'autore.
+% Per una data fissa usa date{5 novembre 2026}; date{\today} usa la data di compilazione.
+% Non confondere il titolo generale con i titoli delle sezioni.
+\title{Laboratorio LaTeX: elementi di un documento} % Titolo generale, modificabile fra graffe.
+\author{} % Autore vuoto: puoi inserire il tuo nome.
+\date{} % Data vuota: inserisci una data o usa \today.
+% ESERCIZIO P1 [BASE] - Titolo e autore
+% OBIETTIVO: personalizzare il documento.
+% DA FARE:
+% 1. Cambia il contenuto di title in «Il mio quaderno LaTeX».
+% 2. Scrivi il tuo nome dentro author. Lascia date vuoto.
+% 3. Compila e cerca titolo e autore nella prima pagina.
+% CONTROLLA NEL PDF: titolo e nome devono comparire una volta sola.
+% SE SERVE: Non modificare il nome del comando né eliminare le graffe.
+
+% ESERCIZIO P2 [BASE] - Dimensione e margini
+% OBIETTIVO: riconoscere le impostazioni globali.
+% DA FARE:
+% 1. Cambia 11pt in 12pt nella classe e ricompila.
+% 2. Cambia margin=2.5cm in margin=3cm e ricompila di nuovo.
+% 3. Confronta larghezza del testo, a capo e numero di pagine.
+% CONTROLLA NEL PDF: la modifica riguarda l’intero documento, non una sola frase.
+% SE SERVE: Non è un errore se il documento occupa più pagine.
+
+% ESERCIZIO P3 [ESTENSIONE] - Pagina orizzontale e interlinea
+% OBIETTIVO: provare opzioni senza perdere la configurazione iniziale.
+% DA FARE:
+% 1. Aggiungi landscape alle opzioni di geometry e osserva il PDF.
+% 2. Ripristina l’orientamento verticale togliendo landscape.
+% 3. Attiva la riga \linespread{1.15} togliendo il % iniziale e ricompila.
+% 4. Commentala di nuovo se preferisci l’interlinea iniziale.
+% CONTROLLA NEL PDF: cambia prima l’orientamento, poi la distanza fra le righe.
+% SE SERVE: Carica geometry una sola volta: un secondo usepackage può causare un conflitto.
+
+
+% =====================================================================
+% PRONTO SOCCORSO ERRORI COMUNI (Da mostrare agli studenti)
+% 1. ?? nei riferimenti? -> Ricompila una seconda volta (serve a LaTeX per aggiornare i file di servizio).
+% 2. Errore di sintassi improvviso? -> Controlla di non aver dimenticato una graffa chiusa '}' o un punto e virgola ';' nei grafici.
+% 3. Simbolo '$' dentro l'ambiente equation o align -> Danno errore, vanno rimossi.
+% 4. Nome immagine errato o maiuscole errate -> L'immagine non viene trovata.
+% =====================================================================
+
+
+\begin{document} % Da qui si scrivono i contenuti; chiudere con end{document} in fondo.
+\maketitle % Usa i dati del preambolo per stampare il titolo.
+\tableofcontents % Indice automatico: non scrivere manualmente titoli e numeri di pagina.
+% Dopo aggiunte o spostamenti può essere necessario ricompilare per aggiornare l'indice.
+% Ogni sezione seguente studia un elemento diverso: puoi lavorare su un blocco alla volta.
+
+% S06 - TESTO: SPAZI, PARAGRAFI, FONT E TITOLI
+% Un semplice invio nel sorgente di norma equivale a uno spazio.
+% Una riga completamente vuota comincia invece un nuovo paragrafo.
+% Più spazi consecutivi non servono ad allineare parole: LaTeX li tratta come uno spazio.
+% Il testo normale è giustificato; evita gli a capo manuali per sistemare una riga del PDF.
+%
+% COMANDI LOCALI
+% textbf{...} e textit{...} hanno un argomento delimitato dalle graffe.
+% large e small sono dichiarazioni: valgono finché non finisce il gruppo che le contiene.
+% Per questo si scrive {\large Una frase.}, con una coppia di graffe esterna.
+% Se togli la graffa finale, il cambiamento può estendersi al testo successivo o dare errore.
+% La dimensione del font dell'EDITOR di Overleaf non modifica la dimensione nel PDF.
+
+\section{Testo}\label{sec:testo} % Sezione numerata e nome per richiamarla in seguito.
+Questo è testo normale. % Gli a capo nel sorgente non creano nuovi paragrafi.
+Una parola in \textbf{grassetto} % textbf agisce soltanto sul testo fra graffe.
+e una in \textit{corsivo}. % textit applica il corsivo a questa porzione.
+
+Questo è un nuovo paragrafo. % La riga vuota precedente crea il paragrafo.
+{\large Una frase più grande.} % L'effetto di large resta dentro le graffe esterne.
+{\small Una nota più piccola.} % Dimensione locale; la dimensione base resta 11pt.
+{\sffamily Una frase senza grazie.} % Cambia localmente la famiglia del font.
+% 11pt nella classe è globale; large, small e sffamily sono qui locali grazie alle graffe.
+% Le lettere accentate si scrivono direttamente in un file UTF-8.
+% ALLINEAMENTO
+% center, flushleft e flushright sono ambienti: begin e end devono avere lo stesso nome.
+% Cambiano l'allineamento soltanto del contenuto racchiuso fra apertura e chiusura.
+% Per un breve testo centrato usa center; per la figura useremo centering nel contenitore.
+\begin{center} % Centra soltanto il contenuto di questo ambiente.
+Una frase al centro. % Cambia il testo per provare l'allineamento.
+\end{center} % Riprende l'allineamento normale, che è giustificato.
+% Per sinistra o destra sostituisci center con flushleft o flushright in begin E end.
+% CARATTERI SPECIALI
+% %, &, $, _, #, { e } hanno un significato nel sorgente: per stamparli anteponi \.
+% Il simbolo _ nel testo richiede \_; in matematica indica invece un pedice.
+% Le parentesi tonde e quadre ordinarie non richiedono protezione nel testo.
+% Per la barra inversa visibile usa textbackslash{}; per gli accenti digita à, è, ì, ò, ù.
+Percentuale: 50\%. Codice: A\_1. Simboli: \& \# \$ \{ \}. % Il backslash protegge i simboli.
+La barra inversa: \textbackslash{}. % La barra inversa da sola introduce un comando.
+% Per stampare % scrivi \%; per i paragrafi usa righe vuote, non \\.
+% STRUTTURA LOGICA
+% section e subsection descrivono livelli: LaTeX sceglie aspetto e numerazione.
+% Cambiare solo la dimensione di una frase non la trasforma in una sezione nell'indice.
+% paragraph è un livello di titolo, non il comando per iniziare un normale paragrafo.
+% I numeri sono automatici: nel titolo scrivi il nome, non «1.1 Nome».
+\subsection{Un sottotitolo} % Livello sotto section: la numerazione è automatica.
+Un breve testo sotto il sottotitolo. % Sostituisci con una frase a tua scelta.
+\paragraph{Un titolo nel paragrafo} % Titolo breve; normalmente non è numerato.
+Il testo segue sulla stessa riga. % Una riga vuota, invece, crea un normale paragrafo.
+% article non supporta chapter. Per i capitoli usa report come classe in un altro progetto.
+% Con report, dopo begin{document} puoi usare \chapter{Titolo} e poi \section{Titolo}.
+
+% ESERCIZIO T1 [BASE] - Due veri paragrafi
+% OBIETTIVO: distinguere righe del sorgente e paragrafi del PDF.
+% DA FARE:
+% 1. Prima di «Questo è testo normale» inserisci due frasi a tua scelta.
+% 2. Separa le frasi con un solo invio e compila.
+% 3. Aggiungi una riga vuota tra le frasi e compila di nuovo.
+% CONTROLLA NEL PDF: solo la seconda modifica crea un nuovo paragrafo.
+% SE SERVE: Per questo esercizio non usare \\.
+
+% ESERCIZIO T2 [BASE] - Grassetto e corsivo
+% OBIETTIVO: applicare una modifica a una porzione precisa.
+% DA FARE:
+% 1. Metti una parola del tuo testo dentro \textbf{...}.
+% 2. Metti una seconda parola dentro \textit{...}.
+% 3. Sotto il testo aggiungi «Risultato: 80\%».
+% CONTROLLA NEL PDF: solo le parole scelte cambiano stile; il simbolo % compare nel PDF.
+% SE SERVE: Le graffe racchiudono il testo. Scrivere % senza \ commenta il resto della riga.
+
+% ESERCIZIO T3 [BASE] - Sottosezioni nell’indice
+% OBIETTIVO: organizzare contenuti senza numeri scritti a mano.
+% DA FARE:
+% 1. Rinomina «Un sottotitolo» in «Primo esempio».
+% 2. Aggiungi \subsection{Secondo esempio} con due righe di testo.
+% 3. Compila e controlla l’indice iniziale.
+% CONTROLLA NEL PDF: le due sottosezioni ricevono numeri coerenti e compaiono nell’indice.
+% SE SERVE: Scrivi i comandi prima della sezione Equazioni, per restare nella sezione Testo.
+
+% ESERCIZIO T4 [ESTENSIONE] - Tre allineamenti
+% OBIETTIVO: confrontare ambienti con lo stesso contenuto.
+% DA FARE:
+% 1. Copia il blocco center due volte.
+% 2. In una copia sostituisci center con flushleft in begin e in end.
+% 3. Nell’altra copia usa flushright in entrambe le righe.
+% CONTROLLA NEL PDF: la stessa frase compare al centro, a sinistra e a destra.
+% SE SERVE: Non chiudere flushleft con end{center}: i nomi devono corrispondere.
+
+% ESERCIZIO T5 [ESTENSIONE] - Dimensione locale
+% OBIETTIVO: evitare che una modifica si propaghi.
+% DA FARE:
+% 1. Scrivi una frase normale, una dentro {\large ...} e una normale subito dopo.
+% 2. Aggiungi una nota con {\small ...} e una frase con {\sffamily ...}.
+% 3. Prova a spostare una parola fuori dalle graffe e ricompila.
+% CONTROLLA NEL PDF: il testo dopo il gruppo torna alla dimensione e alla famiglia di base.
+% SE SERVE: Puoi evidenziare contemporaneamente una parola con \textbf{\textit{parola}}.
+
+% S07 - EQUAZIONI: TRE MODI DI SCRIVERLE
+% 1. $...$ inserisce matematica dentro una frase.
+% 2. \[...\] mette una formula su una riga separata, senza numero.
+% 3. begin{equation} ... end{equation} crea una formula separata con numero.
+% Nel PDF lettere e spazi matematici seguono regole diverse dal testo normale.
+% Evita $$...$$: per le formule separate useremo sempre \[...\].
+%
+% ARGOMENTI MATEMATICI
+% frac{numeratore}{denominatore} richiede due argomenti; sqrt{...} ne richiede uno.
+% Il simbolo ^ introduce l'esponente e _ introduce il pedice: raggruppa con le graffe.
+% x^{12} dà l'esponente 12; x^12 dà il solo 1 come esponente, seguito da 2.
+% Per scrivere parole in una formula usa \text{...}, fornito da amsmath.
+% Esempio: \[v=2\quad\text{quando }t=1\]. quad inserisce uno spazio matematico.
+
+\section{Equazioni} % Una sezione dedicata esclusivamente agli strumenti matematici.
+Nel testo: $x^{2}+a_{1}$. % $...$ delimita la formula in linea; ^ potenza, _ pedice.
+\[ % Apre una formula separata senza numero. Non inserire anche i simboli $.
+  \frac{1}{2}+\sqrt{9}=3.5 % frac ha due argomenti; sqrt contiene il radicando.
+\] % Chiude la formula separata.
+\[ % Le lettere greche richiedono l'ambiente matematico.
+  \alpha+\beta=\gamma % I nomi dei comandi corrispondono ai nomi delle lettere.
+\] % Chiude la formula con le lettere greche.
+% Le graffe sono essenziali per più caratteri: x^{12}, a_{iniziale}.
+\[ % Esempi facoltativi da consultare: somma e integrale.
+  \sum_{i=1}^{3}i=6,\qquad \int_{0}^{2} x\,dx=2 % _ limite inferiore, ^ superiore.
+\] % qquad è uno spazio ampio; \, un piccolo spazio prima del differenziale.
+% NUMERAZIONE E NOMI
+% equation assegna il numero: NON aggiungere $ all'interno dell'ambiente.
+% label salva il numero usando un nome scelto da te; eqref lo richiama nel testo.
+% Il prefisso eq: è una convenzione per ritrovare le equazioni, non un obbligo sintattico.
+% Anche se sposti l'equazione, il nome può restare eq:energia e il numero si aggiorna.
+\begin{equation} % Formula separata con numero automatico.
+  E=m c^{2} % Un esempio fisico: la vicinanza fra simboli indica un prodotto.
+  \label{eq:energia} % Nome univoco, senza spazi: non è il numero stampato.
+\end{equation} % Chiude l'ambiente numerato; non usare $ al suo interno.
+L'equazione~\eqref{eq:energia} % eqref restituisce il numero tra parentesi.
+è numerata automaticamente. % ~ evita che numero e parola finiscano su righe diverse.
+
+% ESERCIZIO M1 [BASE] - Dalla frase alla formula
+% OBIETTIVO: scegliere il contesto matematico.
+% DA FARE:
+% 1. Scrivi una frase che contenga $a^{2}+b^{2}=c^{2}$.
+% 2. Ripeti la formula dentro \[ ... \].
+% 3. Osserva posizione della formula e numerazione.
+% CONTROLLA NEL PDF: la prima sta nella frase, la seconda è separata e non ha numero.
+% SE SERVE: Apri e chiudi lo stesso delimitatore: un solo $ lasciato aperto causa errori.
+
+% ESERCIZIO M2 [BASE] - Argomenti e raggruppamenti
+% OBIETTIVO: modificare frazioni, radici, esponenti e pedici.
+% DA FARE:
+% 1. Cambia x^{2} in x^{12} e a_{1} in a_{10}.
+% 2. Cambia \frac{1}{2}+\sqrt{9}=3.5 in \frac{1}{2}+\sqrt{16}=4.5.
+% 3. Scrivi una nuova formula con \alpha e \beta.
+% CONTROLLA NEL PDF: 12 e 10 sono entrambi raggruppati; il risultato della somma resta corretto.
+% SE SERVE: I comandi matematici devono stare tra $...$, \[...\] o in un ambiente matematico.
+
+% ESERCIZIO M3 [BASE] - Una nuova equazione numerata
+% OBIETTIVO: usare un nome univoco e un rimando automatico.
+% DA FARE:
+% 1. Copia il blocco equation dell’energia.
+% 2. Sostituisci la formula con v=\frac{s}{t} e l’etichetta con eq:velocita.
+% 3. Aggiungi la frase «La formula~\eqref{eq:velocita} esprime una velocità».
+% 4. Compila e verifica entrambi i numeri.
+% CONTROLLA NEL PDF: le due equazioni hanno numeri distinti e il nuovo rimando richiama la seconda.
+% SE SERVE: La copia deve avere un nuovo label: due nomi uguali rendono il rimando ambiguo.
+
+% MODELLO FACOLTATIVO: PIÙ RIGHE ALLINEATE (amsmath)
+% L'ambiente align numera le righe; il simbolo & fissa il punto di allineamento.
+% Qui lo poniamo prima del segno =. Il simbolo \\ termina una riga, non l'ultima.
+% Per attivare il modello togli i % soltanto alle quattro righe di codice seguenti:
+% \begin{align}
+%   x+2 &= 5 \\
+%   x &= 3
+% \end{align}
+
+% ESERCIZIO M4 [ESTENSIONE] - Somme, integrali e testo
+% OBIETTIVO: leggere e modificare esempi più ricchi.
+% DA FARE:
+% 1. Cambia la somma in \sum_{i=1}^{4}i=10.
+% 2. Cambia l’integrale in \int_{0}^{3}x\,dx=\frac{9}{2}.
+% 3. Prova la formula con \text{quando } spiegata all’inizio della sezione.
+% CONTROLLA NEL PDF: estremi, argomenti e risultati sono coerenti.
+% SE SERVE: LaTeX impagina i simboli: non verifica se il risultato matematico è corretto.
+
+% ESERCIZIO M5 [ESTENSIONE] - Due passaggi allineati
+% OBIETTIVO: riutilizzare un modello spiegato.
+% DA FARE:
+% 1. Attiva il blocco align commentato qui sopra.
+% 2. Cambialo in x+3=7 e x=4 senza spostare i due &.
+% 3. Confronta la colonna dei segni di uguaglianza.
+% CONTROLLA NEL PDF: i segni = sono allineati; le righe ricevono numeri automatici.
+% SE SERVE: Non aggiungere $ dentro align. Qui & allinea; nelle tabelle separa le celle.
+
+% S08 - ELENCHI: VOCI E AMBIENTI
+% itemize usa simboli per elenchi senza un ordine essenziale.
+% enumerate usa numeri per passi o elementi ordinati.
+% Ogni voce comincia con item: non inserire pallini o numeri manualmente.
+% Gli ambienti devono chiudersi nell'ordine inverso a quello di apertura.
+% In un elenco annidato, il secondo ambiente sta DENTRO una voce del primo.
+% L'indentazione nel sorgente aiuta a leggere il codice ma non determina il livello.
+
+\section{Elenchi} % Confronta un elenco puntato con uno numerato.
+\begin{itemize} % Elenco puntato, quando l'ordine delle voci non è essenziale.
+  \item Prima voce. % Ogni voce inizia con item; il simbolo viene aggiunto da LaTeX.
+  \item Seconda voce. % Aggiungi altre righe analoghe per allungare l'elenco.
+\end{itemize} % Il nome dell'ambiente deve coincidere con quello di begin.
+\begin{enumerate} % Elenco numerato, utile per passi ordinati.
+  \item Primo passo. % Il numero si aggiorna automaticamente.
+  \item Secondo passo. % Inserire una nuova voce rinumera quelle successive.
+\end{enumerate} % Chiude l'elenco numerato.
+% Un sottoelenco si crea aprendo un altro itemize dentro una voce del primo elenco.
+% Esempio facoltativo (togli % a tutte le righe del blocco):
+% \begin{itemize}
+%   \item Una voce con dettagli:
+%   \begin{itemize}
+%     \item Un dettaglio.
+%   \end{itemize}
+% \end{itemize}
+
+% ESERCIZIO L1 [BASE] - Aggiungere e spostare
+% OBIETTIVO: sfruttare la numerazione automatica.
+% DA FARE:
+% 1. Aggiungi una terza voce a itemize e una terza a enumerate.
+% 2. Nell’elenco numerato sposta la terza voce prima della prima.
+% 3. Compila e osserva la numerazione.
+% CONTROLLA NEL PDF: i numeri seguono il nuovo ordine senza interventi manuali.
+% SE SERVE: Sposta l’intera riga a partire da item, non soltanto il testo.
+
+% ESERCIZIO L2 [BASE] - Punti o numeri
+% OBIETTIVO: cambiare tipo di elenco.
+% DA FARE:
+% 1. Copia uno degli elenchi in una zona libera della sezione Elenchi.
+% 2. Cambia itemize in enumerate, o viceversa, sia in begin sia in end.
+% 3. Mantieni identiche le voci.
+% CONTROLLA NEL PDF: cambia il simbolo delle voci ma non il loro contenuto.
+% SE SERVE: Per la struttura servono un begin, un end e almeno un item.
+
+% ESERCIZIO L3 [ESTENSIONE] - Un sottoelenco
+% OBIETTIVO: leggere una struttura annidata.
+% DA FARE:
+% 1. Attiva il modello annidato commentato della sezione.
+% 2. Aggiungi un secondo dettaglio dentro l’elenco interno.
+% 3. Aggiungi una nuova voce dopo la chiusura dell’elenco interno ma prima di quella esterna.
+% CONTROLLA NEL PDF: i due dettagli sono subordinati alla prima voce; l’ultima voce è al livello principale.
+% SE SERVE: Rientra il codice con spazi per distinguere visivamente le due coppie begin/end.
+
+% S09 - TABELLE: GRIGLIA E CONTENITORE
+% tabular descrive le celle. table contiene la griglia, la didascalia e la sua etichetta.
+% Puoi usare tabular da solo se non ti servono numero e didascalia.
+% Ogni lettera in {lc} definisce UNA colonna: qui due colonne in totale.
+% l = sinistra, c = centro, r = destra. Per tre colonne potresti usare {lcr}.
+% Con N colonne ogni riga completa contiene N-1 simboli &.
+% Distingui \& (simbolo da stampare dentro una cella) da & (separatore delle celle).
+% \\ chiude una riga. hline disegna una linea orizzontale tra due righe.
+% Non usare spazi ripetuti per allineare le colonne: scegli l, c o r.
+% Il numero della tabella deriva da caption; label va dopo caption.
+
+\section{Tabelle} % tabular contiene le celle; table aggiunge didascalia e numero.
+\begin{table}[htbp] % Preferenze di posizione: qui, alto, basso, pagina di flottanti.
+  \centering % Centra la tabella all'interno dell'ambiente.
+  \begin{tabular}{lc} % Due colonne: l allinea a sinistra, c al centro; r sarebbe a destra.
+    \hline % Disegna una linea orizzontale.
+    Voce & Quantità \\ % & separa le due celle; \\ termina la riga della tabella.
+    \hline % Separa l'intestazione dai dati.
+    Libri & 3 \\ % Prima riga di dati; due colonne richiedono un solo &.
+    Quaderni & 5 \\ % Seconda riga; modifica i contenuti delle celle.
+    \hline % Linea di chiusura della tabella.
+  \end{tabular} % Chiude la griglia di celle.
+  \caption{Una tabella di esempio.} % Didascalia e numero automatico della tabella.
+  \label{tab:esempio} % Dopo caption: memorizza il numero corretto.
+\end{table} % LaTeX può spostare la tabella per sistemare meglio la pagina.
+
+% ESERCIZIO A1 [BASE] - Una nuova riga
+% OBIETTIVO: aggiungere dati mantenendo la struttura.
+% DA FARE:
+% 1. Prima dell’ultima hline aggiungi: Penne & 8 \\
+% 2. Cambia il numero dei Libri in 12.
+% 3. Compila e conta le righe di dati, esclusa l’intestazione.
+% CONTROLLA NEL PDF: ci sono tre righe di dati e sempre due colonne.
+% SE SERVE: Ricorda \\ a fine riga: senza chiusura la riga seguente può unirsi alla precedente.
+
+% ESERCIZIO A2 [BASE] - Allineamento delle colonne
+% OBIETTIVO: modificare il formato della griglia.
+% DA FARE:
+% 1. Cambia {lc} in {lr} e compila.
+% 2. Prova {cc} e compila di nuovo.
+% 3. Scegli la disposizione più leggibile per le tue voci.
+% CONTROLLA NEL PDF: con lr i numeri sono allineati a destra.
+% SE SERVE: Le lettere definiscono colonne, non singole righe.
+
+% ESERCIZIO A3 [BASE] - Didascalia ed etichetta
+% OBIETTIVO: preparare un oggetto da richiamare.
+% DA FARE:
+% 1. Cambia la didascalia in «Materiale disponibile».
+% 2. Mantieni label{tab:esempio} dopo caption.
+% 3. Compila: cerca la parola Tabella e il numero davanti alla didascalia.
+% CONTROLLA NEL PDF: la tabella ha una didascalia numerata sotto la griglia.
+% SE SERVE: Cambiare il testo della caption non richiede di cambiare il nome del label.
+
+% ESERCIZIO A4 [ESTENSIONE] - Tre colonne coerenti
+% OBIETTIVO: aggiornare insieme formato e righe.
+% DA FARE:
+% 1. Cambia {lr} o {lc} in {lcr}.
+% 2. Aggiungi una terza intestazione «Stato» preceduta da &.
+% 3. In ogni riga di dati aggiungi & Disponibile prima di \\
+% 4. Compila e verifica intestazione e tutte le righe.
+% CONTROLLA NEL PDF: ogni riga ha tre celle e due &.
+% SE SERVE: Un & in più del previsto può produrre «Extra alignment tab»; controlla la riga segnalata.
+
+% S10 - IMMAGINI: FILE, DIMENSIONE E DIDASCALIA
+% Prima carica il file nel progetto, poi usa il suo nome in includegraphics.
+% Il file richiesto è immagine_esempio.png, nella stessa cartella del sorgente.
+% Il nome deve coincidere, comprese estensione e maiuscole. Preferisci nomi senza spazi.
+% width=0.5\textwidth significa metà della larghezza della zona di testo.
+% Cambiare solo width conserva le proporzioni: non servono insieme larghezza e altezza.
+% figure è il contenitore flottante; includegraphics inserisce effettivamente l'immagine.
+% Le opzioni h, t, b, p sono preferenze: qui, in alto, in basso o pagina di figure.
+% Se la figura cambia pagina non è necessariamente un errore: usa i riferimenti per citarla.
+
+\section{Immagini} % Inserisce un file già esistente nel progetto.
+\begin{figure}[htbp] % È un flottante: la posizione finale può cambiare.
+  \centering % Centra l'immagine.
+  \includegraphics[width=0.5\textwidth] % Larghezza pari a metà di quella del testo.
+    {immagine_esempio.png} % Nome del file caricato; rispetta maiuscole ed estensione.
+  \caption{Un'immagine di esempio.} % Aggiunge la didascalia con numero automatico.
+  \label{fig:immagine} % Etichetta unica, dopo la didascalia.
+\end{figure} % Chiude l'ambiente della figura.
+% Impostare solo width conserva le proporzioni. PNG, JPG e PDF funzionano con pdfLaTeX.
+
+% ESERCIZIO I1 [BASE] - Ridimensionare
+% OBIETTIVO: interpretare una dimensione relativa.
+% DA FARE:
+% 1. Cambia 0.5 in 0.35 e compila.
+% 2. Prova 0.7 e compila.
+% 3. Riporta il valore a 0.5 o scegli una dimensione leggibile.
+% CONTROLLA NEL PDF: cambiano larghezza e altezza; l’immagine non si deforma.
+% SE SERVE: Mantieni \textwidth e il punto decimale: 0.5, non 0,5.
+
+% ESERCIZIO I2 [BASE] - Una didascalia significativa
+% OBIETTIVO: personalizzare la figura senza alterarne il nome.
+% DA FARE:
+% 1. Riscrivi il testo di caption descrivendo l’immagine.
+% 2. Mantieni label{fig:immagine} dopo la caption.
+% 3. Compila e verifica il numero della figura.
+% CONTROLLA NEL PDF: la descrizione cambia e il numero resta automatico.
+% SE SERVE: Non mettere label prima di caption: potrebbe memorizzare il numero sbagliato.
+
+% ESERCIZIO I3 [ESTENSIONE] - Un secondo file
+% OBIETTIVO: gestire caricamento e più figure.
+% DA FARE:
+% 1. Carica una tua immagine PNG o JPG con nome semplice, ad esempio foto_prova.jpg.
+% 2. Copia il blocco figure e sostituisci il nome del file.
+% 3. Scegli una nuova didascalia e label{fig:personale}.
+% 4. Compila e confronta i numeri delle due figure.
+% CONTROLLA NEL PDF: il secondo file compare con didascalia e numero propri.
+% SE SERVE: Se non vuoi caricare un altro file, usa ancora immagine_esempio.png con una nuova etichetta.
+
+\clearpage % Nuova pagina: stampa prima i flottanti ancora in attesa.
+
+% S11 - GRAFICI: UNA FORMULA NEL SORGENTE
+% pgfplots costruisce il grafico; non serve salvare un'immagine del grafico a parte.
+% I tre livelli sono: figure per didascalia e numero, tikzpicture per il disegno,
+% axis per assi, intervallo e curva. Si chiudono nell'ordine inverso.
+% Per cominciare riutilizza il blocco: modifica prima funzione, poi intervallo, poi etichette.
+%
+% SINTASSI DELLA FUNZIONE
+% La funzione è dentro addplot{...}; il punto e virgola finale chiude il comando.
+% Qui la sintassi è quella del calcolo del grafico: 2*x per il prodotto, x^2 per il quadrato.
+% Non mettere $ nella funzione di addplot. I $ servono invece nelle etichette degli assi.
+% domain=0:3 sceglie i valori di x; samples=51 stabilisce quanti punti calcolare.
+% Cambiare il testo della caption NON cambia la curva: modifica entrambi in modo coerente.
+
+\section{Grafici} % Crea un grafico nel sorgente, invece di importare un'immagine.
+% pgfplots usa gli ambienti tikzpicture e axis: per iniziare modifica il blocco già pronto.
+\begin{figure}[htbp] % Contenitore con didascalia e numero, come per un'immagine.
+\centering % Centra il grafico nella figura.
+\begin{tikzpicture} % Apre l'area del disegno usata da pgfplots.
+\begin{axis}[ % Inizia il sistema di assi; le opzioni sono separate da virgole.
+  width=0.65\textwidth, % Larghezza del grafico: modifica la frazione.
+  xlabel={$x$}, ylabel={$y$}, % Nomi degli assi in modalità matematica.
+  domain=0:3, samples=51] % Intervallo di x e numero di punti usati per la curva.
+  \addplot {x^2}; % Funzione da tracciare; il punto e virgola finale è obbligatorio.
+\end{axis} % Chiude il sistema di assi.
+\end{tikzpicture} % Chiude l'area del disegno.
+\caption{Il grafico della funzione $y=x^2$.} % Didascalia della figura che contiene il grafico.
+\label{fig:grafico} % Nome distinto da quello dell'immagine precedente.
+\end{figure} % Il grafico ha un numero nella stessa serie delle altre figure.
+% Per punti assegnati puoi SOSTITUIRE addplot con: \addplot coordinates {(0,0) (1,1) (2,4)};
+
+% ESERCIZIO G1 [BASE] - Dalla parabola alla retta
+% OBIETTIVO: collegare formula e curva.
+% DA FARE:
+% 1. Sostituisci \addplot {x^2}; con \addplot {2*x};
+% 2. Aggiorna la didascalia scrivendo $y=2x$.
+% 3. Compila e confronta la forma della curva.
+% CONTROLLA NEL PDF: ora il grafico è una retta e la didascalia descrive la stessa funzione.
+% SE SERVE: Usa 2*x e termina il comando con ;. Non scrivere 2x dentro addplot.
+
+% ESERCIZIO G2 [BASE] - Dominio ed etichette
+% OBIETTIVO: modificare il riquadro degli assi.
+% DA FARE:
+% 1. Cambia domain=0:3 in domain=-2:2.
+% 2. Cambia ylabel={$y$} in ylabel={$f(x)$}.
+% 3. Porta la larghezza a 0.55\textwidth e ricompila.
+% CONTROLLA NEL PDF: l’intervallo comprende x negativi, l’asse verticale si chiama f(x).
+% SE SERVE: Se perdi una virgola tra le opzioni di axis, correggi le quadre prima della funzione.
+
+% MODELLO FACOLTATIVO: GRAFICO DA PUNTI
+% In alternativa alla formula puoi scrivere coppie (x,y) dopo coordinates.
+% Sostituisci il solo comando addplot con questo, senza aggiungerlo per ora:
+% \addplot coordinates {(0,0) (1,1) (2,4) (3,9)};
+% Ogni coppia ha una virgola; le coppie sono separate da spazi e racchiuse fra graffe.
+% Per mostrare solo marcatori usa l'opzione [only marks]:
+% \addplot[only marks] coordinates {(0,0) (1,1) (2,4) (3,9)};
+
+% ESERCIZIO G3 [ESTENSIONE] - Una curva e punti assegnati
+% OBIETTIVO: sovrapporre due serie senza cambiare gli assi.
+% DA FARE:
+% 1. Ripristina domain=0:3 e la funzione x^2 nel primo addplot.
+% 2. Aggiungi un secondo addplot con only marks e le coordinate del modello.
+% 3. Aggiorna la didascalia descrivendo curva e punti.
+% CONTROLLA NEL PDF: i punti assegnati cadono sulla curva y=x^2.
+% SE SERVE: I due comandi addplot stanno nello stesso axis, ciascuno con il proprio ;.
+
+% S12 - RIFERIMENTI: NOMI STABILI, NUMERI AUTOMATICI
+% label assegna un nome ad un numero già generato. ref recupera quel numero.
+% Sezioni: label subito dopo section. Equazioni: label dentro equation.
+% Figure e tabelle: label dopo caption, che assegna il numero al contenitore.
+% Il comando ref non aggiunge la parola «figura» o «tabella»: scrivila tu nella frase.
+% eqref aggiunge le parentesi, quindi è utile per le equazioni.
+% Il simbolo ~ è uno spazio non separabile: evita un a capo tra «figura» e il numero.
+%
+% DUE PASSAGGI
+% LaTeX registra i numeri in file di servizio e li riusa nella compilazione successiva.
+% Se un rimando appare come ??, ricompila prima di riscrivere il codice.
+% Se resta ??, confronta lettera per lettera label e ref, incluse maiuscole e punteggiatura.
+% Indice e numeri di pagina possono richiedere un ulteriore passaggio dopo spostamenti.
+
+\section{Riferimenti} % Collega parti del documento mediante nomi univoci.
+La sezione~\ref{sec:testo} % ref restituisce il numero della sezione etichettata.
+contiene gli esempi di testo. % Il numero cambia se sposti o aggiungi sezioni.
+La tabella~\ref{tab:esempio} % Per le tabelle usa ref, non eqref.
+e la figura~\ref{fig:immagine} % Anche le immagini si richiamano tramite il numero della figura.
+hanno numeri automatici. % Non scrivere i numeri manualmente.
+Vedi l'equazione~\eqref{eq:energia}. % eqref aggiunge le parentesi al numero dell'equazione.
+Il grafico è nella figura~\ref{fig:grafico}. % Immagini e grafici condividono la serie delle figure.
+% Se compare ??, ricompila e verifica i nomi. Non assegnare lo stesso label a due oggetti.
+
+% ESERCIZIO R1 [BASE] - Un rimando per ogni oggetto
+% OBIETTIVO: scrivere riferimenti senza numeri manuali.
+% DA FARE:
+% 1. Aggiungi una frase che richiami tab:esempio con \ref.
+% 2. Aggiungi una frase che richiami fig:grafico con \ref.
+% 3. Aggiungi una frase che richiami eq:velocita con \eqref, se hai svolto M3.
+%    Altrimenti richiama eq:energia.
+% CONTROLLA NEL PDF: i rimandi mostrano numeri e le equazioni hanno le parentesi.
+% SE SERVE: La parola Tabella o Figura appartiene al testo, non al comando ref.
+
+% ESERCIZIO R2 [BASE] - La rinumerazione automatica
+% OBIETTIVO: osservare l’utilità delle etichette.
+% DA FARE:
+% 1. Inserisci \section{Una prova intermedia} prima della sezione Testo.
+% 2. Aggiungi una riga di testo nella nuova sezione e compila.
+% 3. Ricompila se necessario e controlla il rimando a sec:testo e l’indice.
+% 4. Elimina la sezione provvisoria se vuoi ripristinare l’ordine iniziale.
+% CONTROLLA NEL PDF: il numero della sezione Testo e il rimando cambiano insieme.
+% SE SERVE: Non cambiare label{sec:testo}: il nome identifica l’oggetto, non la sua posizione.
+
+% ESERCIZIO R3 [ESTENSIONE] - Diagnosi di un rimando mancante
+% OBIETTIVO: riconoscere e riparare un errore comune.
+% DA FARE:
+% 1. In UN solo rimando sostituisci fig:grafico con fig:graficco.
+% 2. Compila e osserva il segnaposto ?? e l’avviso di riferimento non definito.
+% 3. Ripristina fig:grafico e ricompila fino a risolvere il rimando.
+% CONTROLLA NEL PDF: alla fine non resta nessun ?? nel documento.
+% SE SERVE: L’errore va introdotto soltanto durante la prova e corretto subito dopo.
+
+% S13 - HYPERLINK: TESTO VISIBILE E DESTINAZIONE
+% href{indirizzo}{testo} richiede DUE argomenti: il primo apre la pagina, il secondo si legge.
+% url{indirizzo} richiede UN argomento e stampa l'indirizzo completo, anche se lungo.
+% Questi comandi richiedono hyperref, già caricato nel preambolo dopo gli altri pacchetti.
+% In questa configurazione i rimandi interni usano linkcolor, i link esterni urlcolor.
+% Il colore è un aiuto visivo: il collegamento è una proprietà del PDF, non del colore.
+% Prova i link nel PDF, non cliccando sul testo del sorgente.
+% Alcuni visualizzatori chiedono conferma prima di aprire una pagina web.
+
+\section{Hyperlink} % Collegamenti esterni e navigazione nel PDF.
+\href{https://www.overleaf.com} % Primo argomento: destinazione del collegamento.
+  {Apri Overleaf} % Secondo argomento: testo visibile e cliccabile nel PDF.
+
+\url{https://www.latex-project.org} % Mostra l'indirizzo completo come link cliccabile.
+% Con hyperref anche indice e riferimenti interni diventano cliccabili nel PDF.
+% Un visualizzatore può chiedere conferma prima di aprire un sito esterno.
+
+% ESERCIZIO H1 [BASE] - Un testo diverso dall’indirizzo
+% OBIETTIVO: separare ciò che si legge da ciò che si apre.
+% DA FARE:
+% 1. Inserisci \href{https://www.latex-project.org}{Sito LaTeX}.
+% 2. Compila e apri il collegamento nel PDF.
+% 3. Verifica che il testo visibile non sia l’indirizzo completo.
+% CONTROLLA NEL PDF: compare «Sito LaTeX» e il collegamento punta all’indirizzo indicato.
+% SE SERVE: Non invertire i due argomenti di href.
+
+% ESERCIZIO H2 [BASE] - Navigazione interna
+% OBIETTIVO: usare indice e rimandi come collegamenti.
+% DA FARE:
+% 1. Compila e clicca sulla voce Grafici nell’indice del PDF.
+% 2. Clicca poi su un riferimento a un’equazione o a una figura.
+% 3. Controlla che il visualizzatore raggiunga il punto atteso.
+% CONTROLLA NEL PDF: la navigazione interna funziona senza scrivere ulteriori comandi nel contenuto.
+% SE SERVE: hyperref rende cliccabili i rimandi esistenti, ma non corregge nomi label sbagliati.
+
+% ESERCIZIO H3 [ESTENSIONE] - Colori dei collegamenti
+% OBIETTIVO: ritrovare un’impostazione nel preambolo.
+% DA FARE:
+% 1. Nella riga di hyperref cambia urlcolor=blue in urlcolor=red.
+% 2. Compila e confronta link esterni e riferimenti interni.
+% 3. Riporta blue se preferisci il colore iniziale.
+% CONTROLLA NEL PDF: cambiano i link ai siti, mentre i rimandi interni restano del colore linkcolor.
+% SE SERVE: Modifica la riga esistente: non caricare hyperref una seconda volta.
+
+% S14 - ESERCITAZIONE CONCLUSIVA F1
+% DURATA: 12 minuti nel percorso di 2 ore, 20 minuti nel percorso di 3 ore.
+% OBIETTIVO: creare una raccolta personale di esempi usando i blocchi studiati.
+% Duplica il progetto prima di iniziare. Puoi riutilizzare codice e commenti di questo file.
+% Non è una relazione su un tema imposto e non deve stare in una sola pagina fisica.
+%
+% REQUISITI ESSENZIALI
+% 1. Titolo «Il mio quaderno LaTeX», autore personale, testo base 12pt e margini di 3cm.
+% 2. Mantieni le sezioni Testo, Equazioni, Elenchi, Tabelle, Immagini, Grafici,
+%    Riferimenti e Hyperlink. Puoi rinominare i sottotitoli, lasciando chiaro l'argomento.
+% 3. Testo: due paragrafi originali, una parola in grassetto, una in corsivo e una percentuale.
+% 4. Equazioni: una formula in linea e una numerata con una nuova etichetta univoca.
+% 5. Elenchi: un elenco numerato con tre voci originali.
+% 6. Tabelle: due colonne, intestazione, tre righe di dati e didascalia.
+% 7. Immagini: una figura larga 0.4\textwidth con didascalia ed etichetta.
+% 8. Grafici: la funzione y=2x nell'intervallo -2:2, con didascalia coerente.
+% 9. Riferimenti: una frase che richiami equazione, tabella e grafico.
+% 10. Hyperlink: un collegamento con testo visibile; indice aggiornato e cliccabile.
+%
+% ESTENSIONE PER CHI TERMINA PRIMA
+% Aggiungi una terza colonna alla tabella, un sottoelenco e punti assegnati nel grafico.
+% Se aggiungi un secondo oggetto, assegna SEMPRE una nuova etichetta.
+%
+% CONTROLLO AUTONOMO PRIMA DI CONSEGNARE
+% [ ] Il PDF compila senza errori e contiene le ultime modifiche.
+% [ ] Non ci sono ?? né nomi label duplicati.
+% [ ] Il testo dopo una modifica locale torna allo stile normale.
+% [ ] Tabella e grafico corrispondono ai dati o alla funzione del codice.
+% [ ] I numeri dei rimandi cambiano correttamente quando inserisco un nuovo oggetto.
+% [ ] I link esterni aprono la destinazione giusta e l'indice naviga nel documento.
+% [ ] So indicare quale riga modificare per cambiare margini, larghezza della figura e funzione.
+%
+% SE QUALCOSA NON FUNZIONA
+% Torna all'ultima compilazione corretta, controlla la prima segnalazione e riprova.
+% Errori tipici: una graffa mancante, begin/end diversi, $ non chiusi, un & in più,
+% nome immagine errato, ; mancante dopo addplot, label non coincidente con ref.
+% Non aggiungere pacchetti a tentativi. Salva anche il sorgente: il PDF da solo non basta.
+
+\end{document} % Ogni begin{document} richiede questa chiusura unica.
